@@ -6,7 +6,7 @@ $(document)
 		.ready(
 				function() {
 
-					var url =$(location).attr('host');
+					var url ="http://"+$(location).attr('host')+"/clearsettleclient";
 					$(function() {
 						$('.dark-modal').modal({
 							dismissible : false,
