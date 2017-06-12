@@ -2,21 +2,30 @@ package com.dursuncimen.clearsettleclient.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = false)
 public class CustomerInfo {
 	
-	private int id;
+	private Integer id;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonProperty("created_at")
 	private Date createdAt;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonProperty("updated_at")
 	private Date updatedAt;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonProperty("deleted_at")
 	private Date deletedAt;
 	
@@ -34,6 +43,8 @@ public class CustomerInfo {
 	
 	private String email;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date birthday;
 	
 	private String gender;
@@ -133,12 +144,12 @@ public class CustomerInfo {
     }
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

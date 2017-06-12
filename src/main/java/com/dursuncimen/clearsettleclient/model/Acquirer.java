@@ -2,21 +2,33 @@ package com.dursuncimen.clearsettleclient.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Acquirer {
-	private int id;
+	private Integer id;
 
 	private String name;
 
 	private String code;
-
+	
 	private String type;
-
-	public int getId() {
+	
+	
+	
+	public Acquirer() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Acquirer(String type) {
+		this.type = type;
+	}
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -40,7 +52,7 @@ public class Acquirer {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setTypeVal(String type) {
 		this.type = type;
 	}
 

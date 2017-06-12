@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Merchant {
 
-	private int id;
+	private Integer id;
 
-	private int parentId;
+	private Integer parentId;
 
 	private String name;
 
@@ -34,20 +34,24 @@ public class Merchant {
 	public Merchant() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public int getId() {
+	
+	public Merchant(String name) {
+		this.name = name;
+	}
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(int parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 

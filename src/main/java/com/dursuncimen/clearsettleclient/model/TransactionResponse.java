@@ -1,54 +1,52 @@
 package com.dursuncimen.clearsettleclient.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionResponse {
 	
-	private List<MerchantForTransaction> transaction;
+	private MerchantWrapper transaction;
 	
-	private List<Fx> fx;
+	private FxWrapper fx;
 	
-	private List<CustomerInfo> customerInfo;
+	private CustomerInfo customerInfo;
 	
-	private List<Merchant> merchant;
+	private Merchant merchant;
 	
 	public TransactionResponse() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<MerchantForTransaction> getTransaction() {
+	public MerchantWrapper getTransaction() {
 		return transaction;
 	}
 
-	public void setTransaction(List<MerchantForTransaction> transaction) {
+	public void setTransaction(MerchantWrapper transaction) {
 		this.transaction = transaction;
 	}
 
-	public List<Fx> getFx() {
+	public FxWrapper getFx() {
 		return fx;
 	}
 
-	public void setFx(List<Fx> fx) {
+	public void setFx(FxWrapper fx) {
 		this.fx = fx;
 	}
 
-	public List<CustomerInfo> getCustomerInfo() {
+	public CustomerInfo getCustomerInfo() {
 		return customerInfo;
 	}
 
-	public void setCustomerInfo(List<CustomerInfo> customerInfo) {
+	public void setCustomerInfo(CustomerInfo customerInfo) {
 		this.customerInfo = customerInfo;
 	}
 
-	public List<Merchant> getMerchant() {
+	public Merchant getMerchant() {
 		return merchant;
 	}
 
-	public void setMerchant(List<Merchant> merchant) {
+	public void setMerchant(Merchant merchant) {
 		this.merchant = merchant;
 	}
 

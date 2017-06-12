@@ -3,14 +3,14 @@ package com.dursuncimen.clearsettleclient.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Transaction {
-	private FxMerchant merchant;
+public class TransactionWrapper {
+	private TransactionMerchant merchant;
 
-	public FxMerchant getMerchant() {
+	public TransactionMerchant getMerchant() {
 		return merchant;
 	}
 
-	public void setMerchant(FxMerchant merchant) {
+	public void setMerchant(TransactionMerchant merchant) {
 		this.merchant = merchant;
 	}
 
@@ -18,6 +18,5 @@ public class Transaction {
 	public String toString() {
 		return "Transaction [merchant=" + merchant + "]";
 	}
-	
-	
+
 }

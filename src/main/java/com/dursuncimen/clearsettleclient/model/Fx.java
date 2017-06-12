@@ -4,23 +4,55 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Fx {
-	private FxMerchant merchant;
 
-	public Fx() {
-		// TODO Auto-generated constructor stub
+	private String originalCurrency;
+
+	private int originalAmount;
+	
+	private String convertedCurrency;
+	
+	private int convertedAmount;
+	
+
+	public String getOriginalCurrency() {
+		return originalCurrency;
 	}
 
-	public FxMerchant getMerchant() {
-		return merchant;
+	public void setOriginalCurrency(String originalCurrency) {
+		this.originalCurrency = originalCurrency;
 	}
 
-	public void setMerchant(FxMerchant merchant) {
-		this.merchant = merchant;
+	public int getOriginalAmount() {
+		return originalAmount;
+	}
+
+	public void setOriginalAmount(int originalAmount) {
+		this.originalAmount = originalAmount;
+	}
+
+	public String getConvertedCurrency() {
+		return convertedCurrency;
+	}
+
+	public void setConvertedCurrency(String convertedCurrency) {
+		this.convertedCurrency = convertedCurrency;
+	}
+
+	public int getConvertedAmount() {
+		return convertedAmount;
+	}
+
+	public void setConvertedAmount(int convertedAmount) {
+		this.convertedAmount = convertedAmount;
 	}
 
 	@Override
 	public String toString() {
-		return "TransactionFx [merchant=" + merchant + "]";
+		return "TransactionFxMerchant [originalCurrency=" + originalCurrency + ", originalAmount=" + originalAmount
+				+ ", convertedCurrency=" + convertedCurrency + ", convertedAmount=" + convertedAmount + "]";
 	}
+
+	
+	
 
 }

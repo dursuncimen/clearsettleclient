@@ -5,15 +5,19 @@ import java.util.Date;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = false)
 public class TransactionQuery {
-
-	@DateTimeFormat(pattern="YYYY-MM-DD")
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fromDate;
-
-	@DateTimeFormat(pattern="YYYY-MM-DD")
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date toDate;
 	
 	@Length(max=64)
@@ -22,9 +26,9 @@ public class TransactionQuery {
 	@Length(max=64)
 	private String operation;
 	
-	private int merchantId;
+	private Integer merchantId;
 	
-	private int acquirerId;
+	private Integer acquirerId;
 	
 	@Length(max=32)
 	private String paymentMethod;
@@ -38,7 +42,7 @@ public class TransactionQuery {
 	@Length(max=256)
 	private String filterValue;
 	
-	private int page;
+	private Integer page;
 	
 	public TransactionQuery() {
 		// TODO Auto-generated constructor stub
@@ -76,7 +80,7 @@ public class TransactionQuery {
 		this.operation = operation;
 	}
 
-	public int getMerchantId() {
+	public Integer getMerchantId() {
 		return merchantId;
 	}
 
@@ -84,7 +88,7 @@ public class TransactionQuery {
 		this.merchantId = merchantId;
 	}
 
-	public int getAcquirerId() {
+	public Integer getAcquirerId() {
 		return acquirerId;
 	}
 
@@ -124,11 +128,11 @@ public class TransactionQuery {
 		this.filterValue = filterValue;
 	}
 
-	public int getPage() {
+	public Integer getPage() {
 		return page;
 	}
 
-	public void setPage(int page) {
+	public void setPage(Integer page) {
 		this.page = page;
 	}
 
