@@ -7,13 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import com.dursuncimen.clearsettleclient.model.Merchant;
+import com.dursuncimen.clearsettleclient.model.MerchantWrapper;
 import com.dursuncimen.clearsettleclient.model.TransactionPost;
 import com.dursuncimen.clearsettleclient.service.MerchantService;
 
@@ -31,11 +33,14 @@ public class MerchantServiceImpl implements MerchantService {
 
 	@Async
 	@Override
-	public Future<Optional<Merchant>> getMerchant(String token,  TransactionPost transactionPost) {
+	public Future<Optional<MerchantWrapper>> getMerchant(String token,  TransactionPost transactionPost) {
 		log.info("Post data: {} transactionPost: {} token: {}", transactionPost, getMerchantUrl, token);
-		Merchant merchant = null;
+		MerchantWrapper merchant = null;
 		try {
-			merchant = restTemplate.postForObject(getMerchantUrl, transactionPost, Merchant.class);
+			HttpHeaders httpHeaders = new HttpHeaders();
+			httpHeaders.set("Authorization", token);
+	        HttpEntity<TransactionPost> httpEntity = new HttpEntity<>(transactionPost,httpHeaders);
+			merchant = restTemplate.postForObject(getMerchantUrl, httpEntity,  MerchantWrapper.class);
 		} catch (HttpStatusCodeException e) {
 			log.info("Post Error Http Code: {} Http Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
 		}

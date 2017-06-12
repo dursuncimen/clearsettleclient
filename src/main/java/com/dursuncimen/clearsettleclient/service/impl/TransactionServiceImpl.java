@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -46,7 +48,10 @@ public class TransactionServiceImpl implements TransactionService {
 		log.info("Post data: {} report: {} token: {}", report, transactionReportUrl, token);
 		ReportResponse reportResponse = null;
 		try {
-			reportResponse = restTemplate.postForObject(transactionReportUrl, report, ReportResponse.class);
+			HttpHeaders headers = new HttpHeaders();
+	        headers.set("Authorization", token);
+	        HttpEntity<Report> httpEntity = new HttpEntity<>(report,headers);
+			reportResponse = restTemplate.postForObject(transactionReportUrl, httpEntity, ReportResponse.class);
 		} catch (HttpStatusCodeException e) {
 			log.info("Post Error Http Code: {} Http Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
 		}
@@ -56,10 +61,13 @@ public class TransactionServiceImpl implements TransactionService {
 	@Async
 	@Override
 	public Future<Optional<TransactionQueryResponse>> listTransaction(String token, TransactionQuery transactionQuery) {
-		log.info("Post data: {} transactionQuery: {} token: {}", transactionQuery, transactionListUrl, token);
+		log.info("Post data: {} transactionQuery: {} token: {}", transactionListUrl, transactionQuery,  token);
 		TransactionQueryResponse transactionQueryResponse = null;
 		try {
-			transactionQueryResponse = restTemplate.postForObject(transactionListUrl, transactionQuery, TransactionQueryResponse.class);
+			HttpHeaders headers = new HttpHeaders();
+	        headers.set("Authorization", token);
+	        HttpEntity<TransactionQuery> httpEntity = new HttpEntity<>(transactionQuery,headers);
+			transactionQueryResponse = restTemplate.postForObject(transactionListUrl, httpEntity, TransactionQueryResponse.class);			
 		} catch (HttpStatusCodeException e) {
 			log.info("Post Error Http Code: {} Http Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
 		}
@@ -72,7 +80,10 @@ public class TransactionServiceImpl implements TransactionService {
 		log.info("Post data: {} transactionPost: {} token: {}", transactionPost, getTransactionUrl, token);
 		TransactionResponse transactionResponse = null;
 		try {
-			transactionResponse = restTemplate.postForObject(getTransactionUrl, transactionPost, TransactionResponse.class);
+			HttpHeaders headers = new HttpHeaders();
+	        headers.set("Authorization", token);
+	        HttpEntity<TransactionPost> httpEntity = new HttpEntity<>(transactionPost,headers);
+			transactionResponse = restTemplate.postForObject(getTransactionUrl, httpEntity, TransactionResponse.class);
 		} catch (HttpStatusCodeException e) {
 			log.info("Post Error Http Code: {} Http Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
 		}
