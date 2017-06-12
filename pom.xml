@@ -15,13 +15,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>		
+		<java.version>1.8</java.version>
 		<jquery.version>2.1.4</jquery.version>
 		<materialize.version>0.98.2</materialize.version>
 		<font.awesome.version>4.5.0</font.awesome.version>
@@ -43,27 +43,27 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>${jquery.version}</version>
 		</dependency>
-		
+
 		<!-- Materialize CSS Framework -->
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>materialize</artifactId>
 			<version>${materialize.version}</version>
 		</dependency>
-		
+
 		<!-- Font Awesome Icons -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -71,7 +71,7 @@
 			<version>${font.awesome.version}</version>
 		</dependency>
 
-		
+
 	</dependencies>
 
 	<build>
@@ -79,6 +79,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>1.1.3</version>
 			</plugin>
 		</plugins>
 	</build>
