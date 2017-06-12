@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="webjars/materialize/0.98.2/dist/css/materialize.min.css" />
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<h1 class="headline">
+			<span class="text-blue">&lt;</span>Clearsettle<span class="text-blue">&gt;</span>
+			<span class="yellow-text">Reporting Web Client</span>
+		</h1>
+		<h2>
+			Created by <a
+				href="https://www.linkedin.com/in/dursun-%C3%A7imen-8439a557/"
+				target="_blank">Dursun ÇİMEN</a>
+		</h2>
+
+
+
+		<div class="row">
+			<form class="col s12" id="transacton-query">
+				<div class="row">
+					<div class="input-field col s3">
+						<input id="transaction-from-date" type="date" class="datepicker" />
+						<label for="transaction-from-date">From Date</label>
+					</div>
+					<div class="input-field col s3">
+						<input id="trancation-to-date" type="date" class="datepicker" />
+						<label for="trancation-to-date">To Date</label>
+					</div>
+					<div class="input-field col s3">
+						<select id="transaction-status">
+							<option value="" disabled="true" selected="selected">Choose	your option</option>
+							<option value="APPROVED">APPROVED</option>
+							<option value="WAITING">WAITING</option>
+							<option value="DECLINED">DECLINED</option>
+							<option value="ERROR">ERROR</option>
+						</select> <label for="transaction-status">Status</label>
+					</div>
+					<div class="input-field col s3">
+						<select id="transaction-operation">
+							<option value="" disabled="true" selected="selected">Choose	your option</option>
+							<option value="DIRECT">DIRECT</option>
+							<option value="REFUND">REFUND</option>
+							<option value="3D">3D</option>
+							<option value="3DAUTH">3DAUTH</option>
+							<option value="STORED">STORED</option>
+						</select> <label for="transaction-operation">Operation</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s4">
+						<select id="transaction-payment-method">
+							<option value="" disabled="true" selected="selected">Choose	your option</option>
+							<option value="CREDITCARD">CREDITCARD</option>
+							<option value="CUP">CUP</option>
+							<option value="IDEAL">IDEAL</option>
+							<option value="GIROPAY">GIROPAY</option>
+							<option value="MISTERCASH">MISTERCASH</option>
+							<option value="STORED">STORED</option>
+							<option value="PAYTOCARD">PAYTOCARD</option>
+						</select> <label for="transaction-payment-method">Payment Method</label>
+					</div>
+					<div class="input-field col s4">
+						<select id="transaction-error-code">
+							<option value="" disabled="true" selected="selected">Choose	your option</option>
+							<option value="Do not honor">Do not honor</option>
+							<option value="Invalid Transaction">Invalid Transaction</option>
+							<option value="Invalid Card">Invalid Card</option>
+							<option value="Not sufficient funds">Not sufficient	funds</option>
+							<option value="Incorrect PIN">Incorrect PIN</option>
+							<option value="Invalid country association">Invalid	country association</option>
+							<option value="Currency not allowed">Currency not allowed</option>
+							<option value="3-D Secure Transport Error">3-D Secure Transport Error</option>
+							<option value="Transaction not permitted to cardholder">Transaction	not permitted to cardholder</option>
+						</select> <label for="transaction-error-code">Error Code</label>
+					</div>
+
+					<div class="input-field col s4">
+						<input id="transaction-merchant-id" type="number" /> <label
+							for="transaction-merchant-id">Merchant Id</label>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="input-field col s4">
+						<input id="transaction-acquirer-id" type="number" /> <label
+							for="transaction-acquirer-id">Acquirer Id</label>
+					</div>
+					<div class="input-field col s4">
+						<select id="transaction-filter-field">
+							<option value="" disabled="true" selected="selected">Choose your option</option>
+							<option value="Transaction UUID">Transaction UUID</option>
+							<option value="Customer Email">Customer Email</option>
+							<option value="Reference No">Reference No</option>
+							<option value="Custom Data">Custom Data</option>
+							<option value="Card PAN">Card PAN</option>
+						</select> <label for="transaction-filter-field">Filter Field</label>
+					</div>
+
+					<div class="input-field col s4">
+						<input id="transaction-filter-value" type="text" /> <label
+							for="transaction-filter-value">Filter Value</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input type="submit" class="waves-effect waves-light btn right"
+							value="Search" />
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<table class="transaction-table">
+			<thead class="table-head">
+				<tr>
+					<th>Transaction ID</th>
+					<th>Merchant</th>
+			    	<th>Fx</th>
+					<th>Acquirer</th>
+			   		<th>Customer</th>
+					<th>Created Date</th>
+					<th>Updated Date</th>
+				</tr>
+			</thead>
+
+			<tbody class="table-body">
+
+			</tbody>
+			<tfoot class="table-foot"></tfoot>
+		</table>
+
+
+	</div>
+	<!-- Delete Modal  -->
+	<div id="deleteModal" class="modal">
+		<div class="modal-content">
+			<h4>Silme İşlemini Onaylıyor musunuz?</h4>
+			<p>
+				<b id="delete-details"></b> İsimli kullanıcıyı silmek istiyor
+				musunuz?
+			</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!"
+				class="modal-action modal-close waves-effect  red btn-flat delete-success">Evet</a>
+			<a href="#!"
+				class="modal-action modal-close waves-effect waves-green btn-flat ">Hayır</a>
+
+		</div>
+	</div>
+
+
+	<!-- Custom Modal  -->
+	<div id="customModal" class="modal custom-modal">
+		<form id="createForm">
+			<div class="modal-content">
+				<h4 class="modal-head"></h4>
+				<div class="row"></div>
+			</div>
+			<div class="modal-footer">
+				 <a href="#!"
+					class="modal-action modal-close waves-effect waves-green btn-flat cancel ">Close</a>
+
+			</div>
+		</form>
+	</div>
+
+
+	<!-- User Login Modal  -->
+	<div id="loginUserModal" class="modal dark-modal">
+		<form id="loginForm">
+			<div class="modal-content">
+				<h4 class="modal-head">User Login</h4>
+				<div class="input-field col s12">
+					<i class="material-icons prefix">email</i> <input id="email"
+						type="email" class="validate" /> <label for="email">E-mail</label>
+				</div>
+				<div class="input-field col s12">
+					<i class="material-icons prefix">vpn_key</i> <input id="password"
+						type="password" class="validate" /> <label for="password">Password</label>
+				</div>
+			</div>
+			<div class="modal-footer ">
+
+				<input type="submit"
+					class="modal-action  waves-effect  green btn-flat create"
+					value="Login"></input>
+
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="webjars/materialize/0.98.2/dist/js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
